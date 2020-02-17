@@ -1,6 +1,8 @@
 <?php
 
 // Script
+
+// FILL IN THE FIELDS WITH YOUR FTP INFORMATION.
 $file_uploader = new FileUploader("<live domain name>", '<ftp user name>', '<ftp password>');
 $file_uploader->update();
 

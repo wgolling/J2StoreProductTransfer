@@ -2,6 +2,8 @@ This is an overview of the New Products Transfer system.
 
 Instructions for setting up and using the system are in the `instructions` folder.
 
+### Disclaimer
+This code has not been thoroughly tested and the "installation" requires a lot of manually placing files in your file systems and configuring the content. It does not work right out of the box.
 
 The system has 4 parts:
   * The "Export New Products" RO CSVI template.

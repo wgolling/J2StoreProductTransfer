@@ -1,0 +1,1 @@
+* * * * * /home/marke142/public_html/myjellysite/dasparts/exports/NewParts/import_all.sh

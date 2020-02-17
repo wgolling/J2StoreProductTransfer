@@ -1,0 +1,6 @@
+TODO:
+----
+
+- Package into a Joomla extension somehow. I'm not really sure how.
+	- All of the annoying paths buried in the script files could become fields.
+	- FTP login information becomes obscured, password becomes encrypted.

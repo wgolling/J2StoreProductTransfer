@@ -1,0 +1,7 @@
+After you have added your new parts and are satisfied with there state, go to the folowing location in the Joomla administrator control panel:
+
+Components -> RO CSVI -> Export
+
+Select "Export New Products" and click "Export".
+
+(Could also make a front-end menu item with administrator-only privileges.)

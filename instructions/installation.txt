@@ -1,0 +1,67 @@
+|--------------------------------------------------------------
+||------------------------------------------------------------|
+|| Instructions for installing New Products Transfer system. ||
+|------------------------------------------------------------||
+--------------------------------------------------------------|
+
+**You will need administrator access to both the local server and live server!**
+
+"->" means "essential step"    "--" means "something to be aware of"
+
+
+Set Up Live Site:
+----------------
+-> add the following folder: <live_website_root>/exports/NewParts/
+
+
+Set Up Local Copy Of Website:
+----------------------------
+-> create the file <local_website_root>/exports/NewParts/last_run.txt
+	-- this file will record the last time the "New Parts Export" template was run.
+-> write a datetime to this file, in the format "Y-m-d H:i:s". 
+	-- Any product created after this datetime will in principle be included in the next export.
+
+
+Restore ROCSVI Templates:
+-------------------------
+-> move the template override "productcustom.php" to the following folder:
+    <local_website_root>/administrator/templates/isis/html/com_csvi/com_j2store/model/export/
+    -- you will likely need to create this folder
+    -- if using an administrator template other than "isis", replace it in the path
+-> local site needs a "Complete Products Export" template, with the template override Productcustom.
+	-- template overrides can be selected by clicking "Advanced" in the Details menu
+	-- the Productcustom override will ensure it only exports those items created after the last export
+	-- a template example is given in templates/ROCSVI/csvi_export_new.xml
+-> live site needs "Complete Products Import"
+	-- a template example is given in templates/ROCSVI/csvi_complete_import.xml
+	-- this template will be called by the script import_all.sh, make sure that cron is enabled
+-> ammend the paths in the configuration for both of these templates, to make sure they are consistent with the particular environments.
+
+
+"Install" Scripts:
+-----------------
+-> install transfer_files.php:
+	-> put in a folder on the local server 
+		-- preferably a location *outsite* of the website's folder in case you need to download a fresh copy of the website.
+	-> change the paths and FTP user information as appropriate.
+-> install import_all.sh:
+	-> put on the live site in <live_website_root>/exports/NewParts/
+	-> make sure the PHP path is valid for your live server
+	-> check the name and Secret key in the command to make sure it matches the information in your "Complete Products Import" template.
+	-> *make sure it is executable!* so it can be run by a cron job.
+
+
+Set up Cron Jobs:
+----------------
+-> every <regular_interval> the local site should run the transfer_files.php, and the live site should run import_all.sh .
+-- cron job examples for local and live servers are found in the cronjobs folder. Take care to alter the paths as appropriate.
+-> DasParts has a Mac, so you can use "crontab transfer_files_cron.txt" to set the cronjobs using that file. *Note that this will overwite any cron jobs they already have!* You can see the current cronjobs by typing "crontab -l". To edit the cron jobs file directly you can use "crontab -e", which opens the file in the default Terminal editor (probably VIM). 
+-- in order to run the local script transfer_files.php, you need to use the *full path* to the local machine's PHP. 
+	-- DasParts has a Mac: 
+		-- you can use "which php" in the Terminal to get the path for the OS' PHP installation
+		-- if their OS doesn't have PHP installed by default, you can use MAMP's. The PHP installation for my MAMP server is at 
+			/Applications/MAMP/bin/php/php7.2.8/bin/php 
+		Other MAMP installations on Mac would have an analoguous path to the most recent PHP version.
+-- If the live script import_all.sh is set as executable, you can run it directly with a cron job.
+
+

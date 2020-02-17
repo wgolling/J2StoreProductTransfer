@@ -1,0 +1,1 @@
+* * * * * /usr/bin/php /Applications/MAMP/userscripts/transfer_files.php

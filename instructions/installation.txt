@@ -32,6 +32,7 @@ Restore ROCSVI Templates:
 	-- template overrides can be selected by clicking "Advanced" in the Details menu
 	-- the Productcustom override will ensure it only exports those items created after the last export
 	-- a template example is given in templates/ROCSVI/csvi_export_new.xml
+	-- should be set to export to <loca_website_root>/exports/NewParts/, since that's where the transfer_files.php script will look.
 -> live site needs "Complete Products Import"
 	-- a template example is given in templates/ROCSVI/csvi_complete_import.xml
 	-- this template will be called by the script import_all.sh, make sure that cron is enabled
@@ -44,6 +45,7 @@ Restore ROCSVI Templates:
 	-> put in a folder on the local server 
 		-- preferably a location *outsite* of the website's folder in case you need to download a fresh copy of the website.
 	-> change the paths and FTP user information as appropriate.
+	-- looks in the folder <local_website_root>/exports/NewParts/ for ROCSVI export files
 -> install import_all.sh:
 	-> put on the live site in <live_website_root>/exports/NewParts/
 	-> make sure the PHP path is valid for your live server
